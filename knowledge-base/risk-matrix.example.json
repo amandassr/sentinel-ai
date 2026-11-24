@@ -1,0 +1,83 @@
+
+{
+  "matrix_name": "Sentinel AI - Matriz de Risco Ilustrativa",
+  "version": "1.0.0",
+  "status": "experimental",
+  "disclaimer": "Matriz autoral para fins educacionais. Não representa políticas internas de instituições financeiras.",
+  "risk_levels": [
+    "low",
+    "medium",
+    "high",
+    "unacceptable",
+    "undetermined"
+  ],
+  "assessment_dimensions": [
+    {
+      "id": "business_activity",
+      "name": "Atividade econômica",
+      "evaluation_criteria": [
+        "Compatibilidade entre atividade declarada e operação",
+        "Existência de atividade proibida ou restrita",
+        "Coerência entre modelo comercial e produtos solicitados"
+      ]
+    },
+    {
+      "id": "identity_and_corporate",
+      "name": "Identidade e estrutura societária",
+      "evaluation_criteria": [
+        "Validade das informações cadastrais",
+        "Identificação dos representantes legais",
+        "Divergências documentais relevantes"
+      ]
+    },
+    {
+      "id": "background_check",
+      "name": "Background Check",
+      "evaluation_criteria": [
+        "Correspondência confirmada",
+        "Possível homônimo",
+        "Contexto e desfecho de registros encontrados",
+        "Limitações das pesquisas realizadas"
+      ]
+    },
+    {
+      "id": "financial_capacity",
+      "name": "Capacidade financeira",
+      "evaluation_criteria": [
+        "Coerência entre faturamento e volume projetado",
+        "Compatibilidade entre porte e operação",
+        "Capacidade de suportar perdas potenciais",
+        "Comprovação das informações financeiras"
+      ]
+    },
+    {
+      "id": "products_and_permissions",
+      "name": "Produtos e permissionamento",
+      "evaluation_criteria": [
+        "Finalidade de cada produto solicitado",
+        "Fluxo financeiro envolvido",
+        "Exposição operacional",
+        "Controles e responsabilidades"
+      ]
+    }
+  ],
+  "analysis_guidelines": {
+    "isolated_indicator_decision": false,
+    "missing_information_means_fraud": false,
+    "restricted_activity_means_low_risk": false,
+    "human_review_required": true,
+    "evidence_required_for_findings": true
+  },
+  "possible_review_status": [
+    "pending",
+    "in_progress",
+    "pending_information",
+    "completed"
+  ],
+  "decision_control": {
+    "autonomous_approval": false,
+    "autonomous_rejection": false,
+    "autonomous_blocking": false,
+    "final_decision_owner": "human_analyst"
+  }
+}
