@@ -1,0 +1,113 @@
+
+{
+  "project": "Sentinel AI",
+  "template_name": "KYC Analysis Report",
+  "version": "1.0.0",
+  "language": "pt-BR",
+  "case_id": "",
+  "review_status": "pending_human_review",
+  "sections": [
+    {
+      "number": 1,
+      "title": "Classificação de Risco",
+      "fields": [
+        "overall_risk",
+        "payment_link_risk",
+        "payment_split_risk",
+        "api_permissions"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Documentos e Identificação",
+      "fields": [
+        "documents_received",
+        "document_validation",
+        "legal_representatives",
+        "identity_divergences"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Briefing",
+      "fields": [
+        "business_description",
+        "business_model",
+        "economic_activity",
+        "sales_channels",
+        "operational_flow"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Background Check e Outras Pesquisas",
+      "fields": [
+        "searches_performed",
+        "findings",
+        "match_status",
+        "case_context",
+        "research_limitations"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Riscos Identificados",
+      "fields": [
+        "risk_indicators",
+        "supporting_evidence",
+        "potential_impact",
+        "severity"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Fundamentação",
+      "fields": [
+        "analytical_reasoning",
+        "facts",
+        "inferences",
+        "limitations"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Análise Financeira",
+      "fields": [
+        "declared_revenue",
+        "proven_revenue",
+        "projected_volume",
+        "average_ticket",
+        "financial_capacity",
+        "financial_inconsistencies"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Permissionamento e Produtos",
+      "fields": [
+        "requested_products",
+        "product_purpose",
+        "financial_flows",
+        "operational_exposure",
+        "required_controls"
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Parecer Final e Pendências",
+      "fields": [
+        "proposed_assessment",
+        "pending_information",
+        "recommendations",
+        "human_review",
+        "final_decision"
+      ]
+    }
+  ],
+  "mandatory_controls": {
+    "evidence_traceability": true,
+    "missing_information_identification": true,
+    "human_review_required": true,
+    "autonomous_final_decision": false
+  }
+}
