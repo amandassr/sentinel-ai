@@ -1,0 +1,31 @@
+
+# Credenciais
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+*.pem
+*.key
+
+# Dados reais e confidenciais
+private/
+customer-data/
+real-cases/
+confidential/
+uploads/
+
+# Arquivos de execução
+*.log
+logs/
+tmp/
+temp/
+.cache/
+__pycache__/
+*.pyc
+
+# Configurações locais
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
