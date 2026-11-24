@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentinel AI | KYC Intelligence</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1220;
+  color: #e5eaf3;
+}
+header {
+  padding: 24px 7%;
+  border-bottom: 1px solid #263248;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo { font-size: 22px; font-weight: bold; }
+.logo span { color: #48d6bd; }
+.tag { color: #48d6bd; font-size: 12px; }
+main { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+.intro { margin-bottom: 28px; }
+.intro h1 { font-size: 30px; margin-bottom: 8px; }
+.intro p, .muted { color: #9aa9bf; line-height: 1.6; }
+.card {
+  background: #131e30;
+  border: 1px solid #293950;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+h2 { font-size: 18px; margin-top: 0; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+label { display: block; font-size: 13px; margin-bottom: 7px; color: #bdc9d9; }
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #35455d;
+  border-radius: 7px;
+  background: #0b1525;
+  color: white;
+  margin-bottom: 16px;
+}
+input[type="file"] { border-style: dashed; }
+button {
+  border: 0;
+  border-radius: 7px;
+  padding: 13px 20px;
+  background: #48d6bd;
+  color: #09201e;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover { opacity: .88; }
+.file-list { color: #48d6bd; font-size: 13px; }
+#result { display: none; }
+.report {
+  background: #0b1525;
+  border: 1px solid #35455d;
+  padding: 18px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.status {
+  display: inline-block;
+  color: #f4d58d;
+  background: #45391d;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+footer {
+  text-align: center;
+  color: #8291a8;
+  padding: 30px;
+  font-size: 12px;
+}
+@media(max-width:650px) {
+  .grid { grid-template-columns: 1fr; }
+  header { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SENTINEL <span>AI</span></div>
+  <div class="tag">KYC & FRAUD INTELLIGENCE</div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="tag">PROTÓTIPO • VERSÃO 0.1.0</div>
+    <h1>Central de Análise KYC</h1>
+    <p>Organize informações cadastrais, reúna evidências e gere uma minuta estruturada para apoiar a análise de risco.</p>
+  </section>
+
+  <section class="card">
+    <h2>01. Identificação da empresa</h2>
+    <div class="grid">
+      <div>
+        <label for="company">Razão social</label>
+        <input id="company" placeholder="Nome da empresa">
+      </div>
+      <div>
+        <label for="taxid">CNPJ</label>
+        <input id="taxid" placeholder="00.000.000/0000-00">
+      </div>
+      <div>
+        <label for="activity">Atividade econômica</label>
+        <input id="activity" placeholder="Ex.: comércio varejista">
+      </div>
+      <div>
+        <label for="revenue">Faturamento mensal declarado (R$)</label>
+        <input id="revenue" type="number" min="0" placeholder="Ex.: 92000">
+      </div>
+      <div>
+        <label for="volume">Volume mensal projetado (R$)</label>
+        <input id="volume" type="number" min="0" placeholder="Ex.: 85000">
+      </div>
+      <div>
+        <label for="ticket">Ticket médio (R$)</label>
+        <input id="ticket" type="number" min="0" placeholder="Ex.: 170">
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>02. Produtos solicitados</h2>
+    <label><input type="checkbox" name="product" value="Link de pagamento" style="width:auto"> Link de pagamento</label>
+    <label><input type="checkbox" name="product" value="Split de pagamentos" style="width:auto"> Split de pagamentos</label>
+    <label><input type="checkbox" name="product" value="Banking API" style="width:auto"> Banking API</label>
+    <label><input type="checkbox" name="product" value="Boletos" style="width:auto"> Boletos</label>
+    <label><input type="checkbox" name="product" value="Consultas cadastrais" style="width:auto"> Consultas cadastrais</label>
+  </section>
+
+  <section class="card">
+    <h2>03. Documentos e evidências</h2>
+    <p class="muted">Anexe arquivos para organizar os materiais do caso demonstrativo. Nesta versão, os arquivos não são lidos nem enviados a um servidor.</p>
+    <label for="documents">Selecionar documentos</label>
+    <input id="documents" type="file" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png">
+    <div id="fileList" class="file-list">Nenhum arquivo selecionado.</div>
+  </section>
+
+  <section class="card">
+    <h2>04. Observações da análise</h2>
+    <label for="observations">Informações adicionais ou pendências conhecidas</label>
+    <textarea id="observations" rows="4" placeholder="Descreva informações que precisam ser consideradas..."></textarea>
+    <button onclick="generateReport()">Gerar minuta KYC demonstrativa</button>
+  </section>
+
+  <section class="card" id="result">
+    <h2>05. Resultado da análise demonstrativa</h2>
+    <span class="status">Pendente de revisão humana</span>
+    <div id="report" class="report" style="margin-top:16px"></div>
+    <button onclick="downloadReport()" style="margin-top:16px">Baixar relatório .txt</button>
+  </section>
+</main>
+
+<footer>
+  SENTINEL AI • Projeto independente de portfólio • Dados tratados localmente nesta demonstração
+</footer>
+
+<script>
+let currentReport = "";
+
+document.getElementById("documents").addEventListener("change", function() {
+  const files = Array.from(this.files);
+  document.getElementById("fileList").textContent =
+    files.length ? files.map(f => "• " + f.name).join("\n") :
+    "Nenhum arquivo selecionado.";
+});
+
+function generateReport() {
+  const company = document.getElementById("company").value || "Não informado";
+  const taxid = document.getElementById("taxid").value || "Não informado";
+  const activity = document.getElementById("activity").value || "Não informada";
+  const revenue = document.getElementById("revenue").value;
+  const volume = document.getElementById("volume").value;
+  const ticket = document.getElementById("ticket").value;
+  const observations = document.getElementById("observations").value || "Nenhuma observação informada.";
+  const products = Array.from(document.querySelectorAll('input[name="product"]:checked'))
+    .map(el => el.value);
+  const files = Array.from(document.getElementById("documents").files)
+    .map(f => f.name);
+
+  let pending = [];
+  if (!revenue) pending.push("Confirmar faturamento declarado.");
+  if (!volume) pending.push("Informar volume transacional projetado.");
+  if (!products.length) pending.push("Informar produtos solicitados.");
+  if (!files.length) pending.push("Nenhum documento foi anexado.");
+
+  currentReport =
+`SENTINEL AI — MINUTA DE ANÁLISE KYC
+====================================
+
+1. CLASSIFICAÇÃO DE RISCO
+Classificação: INDETERMINADA
+Status: Pendente de revisão humana.
+Não há evidências suficientes para uma classificação definitiva.
+
+2. DOCUMENTOS E IDENTIFICAÇÃO
+Empresa: ${company}
+CNPJ: ${taxid}
+Arquivos anexados: ${files.length ? files.join(", ") : "Nenhum"}
+A leitura e validação documental não estão implementadas nesta versão.
+
+3. BRIEFING
+Atividade declarada: ${activity}
+
+4. BACKGROUND CHECK E OUTRAS PESQUISAS
+Pesquisas externas não realizadas nesta demonstração.
+
+5. RISCOS IDENTIFICADOS
+Não foram realizadas verificações automatizadas.
+As informações disponíveis não permitem confirmar irregularidades.
+
+6. FUNDAMENTAÇÃO
+Esta minuta foi organizada com base nos dados informados pelo usuário.
+Informações declaradas não equivalem a informações comprovadas.
+
+7. ANÁLISE FINANCEIRA
+Faturamento declarado: ${revenue ? "R$ " + Number(revenue).toLocaleString("pt-BR") : "Não informado"}
+Volume projetado: ${volume ? "R$ " + Number(volume).toLocaleString("pt-BR") : "Não informado"}
+Ticket médio: ${ticket ? "R$ " + Number(ticket).toLocaleString("pt-BR") : "Não informado"}
+
+8. PERMISSIONAMENTO E PRODUTOS
+Produtos solicitados: ${products.length ? products.join(", ") : "Não informados"}
+A avaliação individual dos produtos depende de informações adicionais sobre finalidade, fluxo e controles.
+
+9. PARECER FINAL E PENDÊNCIAS
+${pending.length ? pending.map((p, i) => (i + 1) + ". " + p).join("\n") : "Complementar as verificações e validar as evidências apresentadas."}
+
+Observações: ${observations}
+
+DECISÃO FINAL: NÃO EMITIDA.
+Revisão humana obrigatória.
+
+AVISO: Protótipo demonstrativo. Não realiza leitura de documentos,
+pesquisas externas, integração com IA ou decisão automatizada.`;
+
+  document.getElementById("report").textContent = currentReport;
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").scrollIntoView({ behavior: "smooth" });
+}
+
+function downloadReport() {
+  const blob = new Blob([currentReport], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "sentinel-ai-relatorio-demonstrativo.txt";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
