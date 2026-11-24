@@ -1,0 +1,65 @@
+
+{
+  "case_id": "SYN-CASE-001",
+  "case_type": "synthetic_test",
+  "company": {
+    "legal_name": "Comercial Horizonte Fictícia Ltda.",
+    "tax_id": "00.000.000/0000-00",
+    "business_activity": "Comércio varejista de artigos para casa",
+    "company_size": "ME",
+    "registration_status": "active"
+  },
+  "business_profile": {
+    "business_model": "Comércio eletrônico",
+    "sales_channels": [
+      "Loja virtual"
+    ],
+    "average_ticket": 170,
+    "projected_monthly_volume": 85000,
+    "requested_products": [
+      "payment_link",
+      "payment_split",
+      "banking_api"
+    ]
+  },
+  "financial_information": {
+    "declared_monthly_revenue": 92000,
+    "revenue_proof_provided": false,
+    "financial_assessment": "pending_evidence"
+  },
+  "evidence": [
+    {
+      "evidence_id": "EV-001",
+      "type": "registration_information",
+      "description": "Informações cadastrais fictícias da empresa.",
+      "status": "provided"
+    },
+    {
+      "evidence_id": "EV-002",
+      "type": "business_briefing",
+      "description": "Descrição fictícia do modelo de comércio eletrônico.",
+      "status": "provided"
+    },
+    {
+      "evidence_id": "EV-003",
+      "type": "financial_information",
+      "description": "Faturamento declarado sem documento comprobatório.",
+      "status": "pending_validation"
+    }
+  ],
+  "analysis_requirements": {
+    "background_check": "not_performed",
+    "split_flow_details": "pending_information",
+    "banking_api_scope": "pending_information",
+    "financial_capacity": "pending_validation"
+  },
+  "expected_analysis": {
+    "identify_missing_financial_evidence": true,
+    "request_split_flow_clarification": true,
+    "request_banking_api_scope": true,
+    "avoid_assuming_fraud": true,
+    "avoid_definitive_risk_classification": true,
+    "human_review_required": true
+  },
+  "expected_status": "pending_human_review"
+}
